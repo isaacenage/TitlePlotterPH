@@ -6,7 +6,7 @@
 
 ---
 
-## 🔧 Features
+## Features
 
 - ✅ **Input Bearing + Distance** data in vertical table format (e.g. `N 69 16 E – 704.05`).
 - ✅ Automatically computes **ΔLat** and **ΔDep** using trigonometry.
@@ -21,7 +21,7 @@
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 | Input Bearings & Distances | Preview Panel | Plotted on Map |
 |---------------------------|----------------|----------------|
@@ -29,7 +29,7 @@
 
 ---
 
-## 📥 Installation
+## Installation
 
 ### Option 1: Plugin Manager (if submitted to QGIS repo)
 1. Go to **Plugins → Manage and Install Plugins**
@@ -51,7 +51,7 @@ C:\Users\<YourUsername>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugi
 
 ---
 
-## 🧮 How It Works
+## How It Works
 
 1. Enter the **tie point** (Northing, Easting) manually or from a predefined table.
 2. For each **bearing + distance line**, the plugin:
@@ -64,7 +64,7 @@ C:\Users\<YourUsername>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugi
 
 ---
 
-## ⚠️ Notes and Best Practices
+## Notes and Best Practices
 
 - Do not use this plugin with EPSG:4326 maps. Always switch to a **projected CRS**, e.g., **EPSG:32651 (UTM Zone 51N)** or a **PRS92-based local grid**.
 - Ensure your bearings follow the format: `N/S`, `Degrees`, `Minutes`, `E/W`, and `Distance`.
@@ -72,13 +72,13 @@ C:\Users\<YourUsername>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugi
 
 ---
 
-## 🖼️ Icon
+## Icon
 
 This plugin uses a custom icon (`icon.png`) included in the root directory. You can change the icon by replacing `icon.png` and updating `metadata.txt`.
 
 ---
 
-## 🧑‍💻 Developer Notes
+## Developer Notes
 
 - **Main class:** `TitlePlotterPhilippineLandTitles`
 - **Dialog UI:** `Title_Plotter_Philippine_Land_Titles_dialog.ui`
@@ -87,7 +87,7 @@ This plugin uses a custom icon (`icon.png`) included in the root directory. You 
 
 ---
 
-## 🧪 To-Do / Feature Roadmap
+## To-Do / Feature Roadmap
 
 - [ ] Support for exporting to KML/GeoJSON
 - [ ] Support for transforming WKT to PRS92 Zone I/II
@@ -96,7 +96,7 @@ This plugin uses a custom icon (`icon.png`) included in the root directory. You 
 
 ---
 
-## 📫 Contact
+## Contact
 
 **Author:** Isaac Enage  
 **Email:** isaacenagework@gmail.com  
