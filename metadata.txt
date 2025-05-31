@@ -1,0 +1,20 @@
+[general]  
+name=TitlePlotterPhilippineLandTitles  
+title=Title Plotter - Philippine Land Titles  
+description=Generates lot polygons from bearings and tiepoints based on Philippine land title format.  
+version=1.0.0  
+qgisMinimumVersion=3.0  
+author=Isaac Enage  
+email=isaacenagework@gmail.com  
+class_name=TitlePlotterPhilippineLandTitles  
+homepage=https://github.com/isaacenage/TitlePlotterPH  
+tracker=https://github.com/isaacenage/TitlePlotterPH/issues  
+repository=https://github.com/isaacenage/TitlePlotterPH  
+  
+about=This plugin allows land surveyors to input bearings and distances, choose a tie point, and dynamically generate a polygon in both preview and map canvas using true geodetic calculations.  
+  
+tags=philippine,land,title,plotter,bearing,distance,polygon,survey,qgis,geometry  
+category=Vector  
+hasProcessingProvider=no  
+icon=icon.png  
+server=False 

@@ -1,0 +1,59 @@
+You are an expert in QGIS, PyQGIS, and custom plugin development for geospatial workflows.
+
+Key Principles  
+- Write modular, Pythonic code that adheres to QGIS Plugin Builder standards.  
+- Do not alter the plugin folder structure or scaffold; maintain compatibility with pb_tool and metadata.txt.  
+- Use Qt Designer `.ui` files for all interface definitions.  
+- Apply spatial computation principles specific to surveying (e.g., bearings, azimuths, displacements).  
+- Prefer function-driven logic over object-heavy designs unless extending QGIS classes.  
+- Use descriptive, domain-specific variable names (e.g., bearing_deg, delta_lat, tie_point).  
+- Always preserve state across UI inputs and spatial outputs.  
+
+QGIS/PyQGIS  
+- Use `QgsGeometry`, `QgsPointXY`, and `QgsVectorLayer` for geometry creation and display.  
+- Compute azimuth from Philippine-format bearings (e.g., N 69 16 E) using custom trigonometry functions.  
+- Generate WKT from sequential vertex displacement using the tie point as origin.  
+- Preview polygon construction progressively in a right-hand plot or canvas.  
+- Embed coordinate system awareness (e.g., PRS92, UTM Zone 51N).  
+
+UI Guidelines  
+- Inputs must use `QTextEdit`, `QLineEdit`, and `QPushButton` with precise object names.  
+- Build secondary dialogs for tie point lookup with search filter by province/municipality.  
+- Return selected tie point values into the main window and auto-populate coordinates.  
+- Use `QPlainTextEdit` or modal output for WKT display.  
+- Layouts must be clean, stacked, and responsive inside the Plugin Builder-generated dialog.  
+
+WKT Generation  
+- Close the polygon if needed by repeating the first vertex.  
+- Format WKT using Python’s Shapely or QGIS-native classes.  
+- Integrate preview with `QgsRubberBand` or custom QGraphicsScene for live plotting.  
+- Use `QgsProject.instance().addMapLayer()` to inject final polygon onto the map.  
+
+Error Handling and Validation  
+- Reject malformed bearing inputs early.  
+- Catch value conversion issues (e.g., missing distance, wrong format) at parse time.  
+- Validate polygon closure and point count before generating WKT.  
+- Use `QMessageBox` for user-facing warnings and error confirmations.  
+
+Dependencies  
+- QGIS 3.x (PyQGIS)  
+- Qt Widgets: `QDialog`, `QTableWidget`, `QGraphicsView`  
+- Python modules: `math`, `re`, `shapely` (optional), `numpy` (for cumulative deltas)
+
+Performance Optimization  
+- Minimize geometry redraws; batch updates in memory then commit once.  
+- Use in-memory vector layers for fast iteration.  
+- Avoid redundant WKT conversions; cache vertices and reuse across functions.  
+- Prefer simple float operations for plotting over CRS-heavy projection transforms unless explicitly needed.  
+
+Key Conventions  
+1. Keep logic in `scripts/` and `test/` folders only if needed—avoid new folders.  
+2. All geometry-related code must be in one utility module or within the plugin's main dialog handler.  
+3. Maintain plugin reusability for future lot plotting tools (e.g., auto-rotate, scale).  
+4. Always assume user input is a formatted vertical stack of `BEARING - DISTANCE`.  
+5. Integrate plotting logic with QuickWKT-style functions for seamless canvas visualization.  
+
+Refer to QGIS Plugin Development Docs and PyQGIS API for widget handling, geometry management, and memory layer workflows.
+
+
+You will not create new paths or subpaths, delete files unless explicitly stated.

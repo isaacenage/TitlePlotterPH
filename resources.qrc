@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/title_plotter_philippine_land_titles" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
