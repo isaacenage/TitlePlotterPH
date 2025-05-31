@@ -108,7 +108,7 @@ This plugin uses a custom icon (`icon.png`) included in the root directory. You 
 
 ## 📄 License
 
-This plugin is licensed under the [MIT License](LICENSE).
+This plugin is licensed under the [GNU License](LICENSE).
 
 ---
 
