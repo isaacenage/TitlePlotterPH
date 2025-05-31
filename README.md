@@ -31,10 +31,12 @@
 
 ## Installation
 
-### Option 1: Plugin Manager (if submitted to QGIS repo)
-1. Go to **Plugins → Manage and Install Plugins**
-2. Search for: `Title Plotter – Philippine Land Titles`
-3. Click **Install**
+### Option 1: Plugin Manager
+1. Download or clone this repository:
+2. Go to **Plugins → Manage and Install Plugins**
+3. Install from ZIP
+4. Browser your downloaded zip file
+5. Click **Install Plugin**
 
 ### Option 2: Manual Installation
 1. Download or clone this repository:
