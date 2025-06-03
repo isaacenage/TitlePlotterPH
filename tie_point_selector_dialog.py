@@ -16,8 +16,15 @@ try:
     normalized_data = [{k.title(): v for k, v in row.items()} for row in raw_data]
     # Create DataFrame and clean data
     _TIEPOINT_DF = pd.DataFrame(normalized_data)
+    
+    # For entries with null Municipality, use the Province value as the Municipality
+    _TIEPOINT_DF["Municipality"] = _TIEPOINT_DF.apply(
+        lambda row: row["Province"] if pd.isna(row["Municipality"]) else row["Municipality"], 
+        axis=1
+    )
+    
     # Remove rows with missing critical data
-    _TIEPOINT_DF.dropna(subset=["Tie Point Name", "Province", "Municipality"], inplace=True)
+    _TIEPOINT_DF.dropna(subset=["Tie Point Name", "Province"], inplace=True)
     # Remove rows with empty strings in critical fields
     _TIEPOINT_DF = _TIEPOINT_DF[_TIEPOINT_DF["Tie Point Name"].astype(str).str.strip() != ""]
 except Exception as e:

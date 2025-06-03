@@ -1,117 +1,98 @@
-# Title Plotter – Philippine Land Titles
+# Title Plotter - Philippine Land Titles
 
-![Plugin Icon](icon.png)
-
-**Title Plotter – Philippine Land Titles** is a QGIS plugin that allows users to visualize land parcels described in technical formats common in Philippine land titles. It converts bearing-distance descriptions and a tie point into a georeferenced polygon, viewable both on a preview canvas and optionally plotted on the active QGIS map.
-
----
+A QGIS plugin designed to automate the plotting of land parcels using the official Philippine land title format. Built specifically for geodetic engineers, GIS analysts, and real estate professionals, this tool allows users to input technical descriptions (bearing-distance or metes-and-bounds format) and instantly generate accurate parcel geometries.
 
 ## Features
 
-- ✅ **Input Bearing + Distance** data in vertical table format (e.g. `N 69 16 E – 704.05`).
-- ✅ Automatically computes **ΔLat** and **ΔDep** using trigonometry.
-- ✅ Accepts a **Tie Point** (Northing/Easting) as the spatial anchor of the polygon.
-- ✅ Real-time preview of the polygon within a **scrollable, zoomable, pan-enabled canvas**.
-- ✅ Supports **Zoom to Layer** for quick navigation to the previewed geometry.
-- ✅ Option to **Plot the final polygon on the QGIS map** using WKT geometry.
-- ✅ Prevents plotting if the current map is using **EPSG:4326 (WGS84)**, which is incompatible with most projected survey data.
-- ✅ Fully scrollable **bearing-distance input panel**, keeping the layout fixed and clean.
-- ✅ Compatible with QGIS 3.x and above.
-- ✅ Lightweight, fast, and follows local cadastral standards.
-
----
-
-## Screenshots
-
-| Input Bearings & Distances | Preview Panel | Plotted on Map |
-|---------------------------|----------------|----------------|
-| ![input](screenshots/input.png) | ![preview](screenshots/preview.png) | ![map](screenshots/plotted.png) |
-
----
+- **Intelligent Bearing Parsing**: Automatically interprets common Philippine survey notations from TCTs and OCTs
+- **Coordinate System Support**: Works with both PRS92 and WGS84 coordinate systems
+- **Tie Point Selection**: Built-in database of common tie points for accurate parcel positioning
+- **Real-time Preview**: Visual feedback of parcel geometry as you input data
+- **OCR Support**: Optional OCR functionality for digitizing technical descriptions from scanned TCTs
+- **Input Validation**: Ensures accurate data entry with real-time validation
+- **WKT Generation**: Exports parcel geometry in Well-Known Text format
 
 ## Installation
 
-### Option 1: Plugin Manager
-1. Download or clone this repository:
-2. Go to **Plugins → Manage and Install Plugins**
-3. Install from ZIP
-4. Browser your downloaded zip file
-5. Click **Install Plugin**
+1. Download the plugin from the QGIS Plugin Repository or clone this repository
+2. Extract the files to your QGIS plugins directory:
+   - Windows: `C:\Users\<username>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\`
+   - Linux: `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
+   - macOS: `~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/`
+3. Enable the plugin in QGIS through Plugins > Manage and Install Plugins
 
-### Option 2: Manual Installation
-1. Download or clone this repository:
-```bash
-git clone https://github.com/isaacenage/TitlePlotterPH.git
-```
+## Usage
 
-2. Copy the entire folder to your QGIS profile plugin directory:
-```
-C:\Users\<YourUsername>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins
-```
+1. **Start the Plugin**: Click the "Title Plotter" icon in the QGIS toolbar
+2. **Select Tie Point**: Use the tie point selector to choose a reference point
+3. **Enter Technical Description**: Input bearing and distance data
+4. **Preview**: View the parcel geometry in real-time
+5. **Plot**: Add the parcel to your QGIS map
 
-3. Launch QGIS and enable the plugin in **Plugins > Manage and Install Plugins**
+## Input Validation
 
----
+- **Degrees**: Must be between 0 and 90
+- **Minutes**: Must be between 0 and 59
+- **Directions**: Automatically capitalized (N/S, E/W)
+- **Distance**: Must be a positive number
 
-## How It Works
+## OCR Support
 
-1. Enter the **tie point** (Northing, Easting) manually or from a predefined table.
-2. For each **bearing + distance line**, the plugin:
-   - Converts degrees + minutes into a decimal angle.
-   - Computes ΔLat = Distance × Cos(angle)
-   - Computes ΔDep = Distance × Sin(angle)
-   - Applies ±1 depending on quadrant (N/S, E/W)
-   - Calculates the next point using the previous (NT, ET)
-3. When you hit **Plot on Map**, it generates a `POLYGON ((ET1 NT1, ET2 NT2, ...))` and places it on the map as a memory layer.
+The plugin includes optional OCR functionality for digitizing technical descriptions from scanned TCTs. To use this feature:
 
----
+1. Install Tesseract OCR on your system
+2. Install required Python packages:
+   ```bash
+   pip install pytesseract Pillow opencv-python
+   ```
+3. Enable OCR in the plugin settings
 
-## Notes and Best Practices
+## Development
 
-- Do not use this plugin with EPSG:4326 maps. Always switch to a **projected CRS**, e.g., **EPSG:32651 (UTM Zone 51N)** or a **PRS92-based local grid**.
-- Ensure your bearings follow the format: `N/S`, `Degrees`, `Minutes`, `E/W`, and `Distance`.
-- Only the first `n-1` segments will generate coordinates; the closing line (last segment) is inferred automatically.
+### Requirements
 
----
+- QGIS 3.x
+- Python 3.x
+- Required Python packages:
+  - pandas
+  - shapely
+  - pytesseract (optional, for OCR)
+  - Pillow (optional, for OCR)
+  - opencv-python (optional, for OCR)
 
-## Icon
+### Building from Source
 
-This plugin uses a custom icon (`icon.png`) included in the root directory. You can change the icon by replacing `icon.png` and updating `metadata.txt`.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/isaacenage/TitlePlotterPH.git
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Build resources:
+   ```bash
+   pyrcc5 resources.qrc -o resources.py
+   ```
 
----
+## Contributing
 
-## Developer Notes
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-- **Main class:** `TitlePlotterPhilippineLandTitles`
-- **Dialog UI:** `Title_Plotter_Philippine_Land_Titles_dialog.ui`
-- **Entry point:** `__init__.py` and `metadata.txt`
-- Built using **Python 3.12**, **Qt Designer**, and **QGIS Plugin Builder 3**
+## License
 
----
+This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
 
-## To-Do / Feature Roadmap
+## Author
 
-- [ ] Support for exporting to KML/GeoJSON
-- [ ] Support for transforming WKT to PRS92 Zone I/II
-- [ ] Auto-labeling of parcel corners
-- [ ] PDF/printable survey map output
+- Isaac Enage (isaacenagework@gmail.com)
 
----
+## Acknowledgments
 
-## Contact
-
-**Author:** Isaac Enage  
-**Email:** isaacenagework@gmail.com  
-**GitHub:** [github.com/isaacenage](https://github.com/isaacenage)
-
----
-
-## 📄 License
-
-This plugin is licensed under the [GNU License](LICENSE).
-
----
-
-## 🔍 Tags
-
-`philippine` `land` `title` `plotter` `bearing` `distance` `polygon` `survey` `cadastral` 
+- QGIS Plugin Builder
+- Philippine Geodetic Engineers
+- Open Source Community

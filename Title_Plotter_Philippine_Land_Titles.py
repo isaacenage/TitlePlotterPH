@@ -59,7 +59,8 @@ class TitlePlotterPhilippineLandTitles:
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
-        locale = QSettings().value('locale/userLocale')[0:2]
+        locale_raw = QSettings().value('locale/userLocale')
+        locale = str(locale_raw)[0:2] if locale_raw else 'en'
         locale_path = os.path.join(
             self.plugin_dir,
             'i18n',
@@ -80,7 +81,6 @@ class TitlePlotterPhilippineLandTitles:
 
         self.dlg = TitlePlotterPhilippineLandTitlesDialog(self.iface)
         self.scene = QGraphicsScene()
-        self.dlg.polygonPreview.setScene(self.scene)
         self.current_points = []
         self.setup_connections()
 

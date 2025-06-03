@@ -11,10 +11,15 @@ homepage=https://github.com/isaacenage/TitlePlotterPH
 tracker=https://github.com/isaacenage/TitlePlotterPH/issues  
 repository=https://github.com/isaacenage/TitlePlotterPH  
   
-about=This plugin allows land surveyors to input bearings and distances, choose a tie point, and dynamically generate a polygon in both preview and map canvas using true geodetic calculations.  
+about=This plugin allows land surveyors to input bearings and distances, choose a tie point, and dynamically generate a polygon in both preview and map canvas using true geodetic calculations. It also supports OCR for automatic extraction of bearing-distance data from TCT images.  
   
-tags=philippine,land,title,plotter,bearing,distance,polygon,survey,qgis,geometry  
+tags=philippine,land,title,plotter,bearing,distance,polygon,survey,qgis,geometry,ocr  
 category=Vector  
 hasProcessingProvider=no  
 icon=icon.png  
-server=False 
+server=False  
+
+# Optional dependencies for OCR functionality
+# These are not required for basic plugin operation
+# Install using: pip install pytesseract Pillow opencv-python
+python_requirements=pytesseract,Pillow,opencv-python 
