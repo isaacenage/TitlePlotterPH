@@ -94,7 +94,7 @@ else:
     print(f"Python path: {sys.path}")
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'TCT_OCR_Dialog.ui'))
+    os.path.dirname(os.path.dirname(__file__)), 'forms', 'TCT_OCR_Dialog.ui'))
 
 class TCTOCRDialog(QDialog, FORM_CLASS):
     def __init__(self, parent=None):

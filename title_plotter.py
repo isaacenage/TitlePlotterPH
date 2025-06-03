@@ -22,7 +22,7 @@ Key Features:
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
+ *   The Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
@@ -37,8 +37,8 @@ from qgis.PyQt.QtWidgets import QGraphicsScene, QGraphicsLineItem
 from qgis.core import QgsGeometry, QgsFeature, QgsVectorLayer, QgsProject
 import math
 import os
-from .Title_Plotter_Philippine_Land_Titles_dialog import TitlePlotterPhilippineLandTitlesDialog
-from .tie_point_selector_dialog import TiePointSelectorDialog
+from .dialogs.title_plotter_dialog import TitlePlotterPhilippineLandTitlesDialog
+from .dialogs.tie_point_selector_dialog import TiePointSelectorDialog
 
 # Initialize Qt resources from file resources.py
 from . import resources
@@ -179,7 +179,7 @@ class TitlePlotterPhilippineLandTitles:
         self.dlg = TitlePlotterPhilippineLandTitlesDialog(self.iface)
         
         # Create the action that will start plugin configuration
-        icon_path = os.path.join(os.path.dirname(__file__), "icon.png")
+        icon_path = os.path.join(os.path.dirname(__file__), "icons", "icon.png")
         self.action = QAction(QIcon(icon_path), "Title Plotter – Philippine Land Titles", self.iface.mainWindow())
         self.action.triggered.connect(self.run)
         self.iface.addToolBarIcon(self.action)

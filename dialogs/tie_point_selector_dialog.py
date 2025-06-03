@@ -9,7 +9,7 @@ from qgis.PyQt.QtCore import pyqtSignal, Qt
 
 # Load and normalize data at module level
 try:
-    json_path = os.path.join(os.path.dirname(__file__), "tiepoints.json")
+    json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "resources", "tiepoints.json")
     with open(json_path, "r") as f:
         raw_data = json.load(f)
     # Normalize key casing: "PROVINCE" → "Province"
@@ -33,7 +33,7 @@ except Exception as e:
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'tie_point_selector_dialog_base.ui'))
+    os.path.dirname(os.path.dirname(__file__)), 'forms', 'tie_point_selector_dialog_base.ui'))
 
 class TiePointSelectorDialog(QDialog, FORM_CLASS):
     # Signal to emit when a tie point is selected

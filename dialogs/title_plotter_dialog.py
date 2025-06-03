@@ -46,7 +46,7 @@ except ImportError:
     OCR_AVAILABLE = False
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'Title Plotter - Philippine Land Titles_dialog_base.ui'))
+    os.path.dirname(os.path.dirname(__file__)), 'forms', 'title_plotter_dialog_base.ui'))
 
 def bearing_to_azimuth(direction_ns, degrees, minutes, direction_ew):
     """Convert bearing to azimuth in degrees using Excel's method."""

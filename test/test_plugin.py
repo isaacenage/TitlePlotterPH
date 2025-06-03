@@ -9,7 +9,7 @@ from qgis.PyQt.QtCore import Qt
 # Add the plugin directory to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from Title_Plotter_Philippine_Land_Titles_dialog import TitlePlotterPhilippineLandTitlesDialog
+from title_plotter_dialog import TitlePlotterPhilippineLandTitlesDialog
 
 class TestTitlePlotter(unittest.TestCase):
     @classmethod

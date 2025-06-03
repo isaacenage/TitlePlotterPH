@@ -1,95 +1,54 @@
 # Title Plotter - Philippine Land Titles
 
-A QGIS plugin designed to automate the plotting of land parcels using the official Philippine land title format. Built specifically for geodetic engineers, GIS analysts, and real estate professionals, this tool allows users to input technical descriptions (bearing-distance or metes-and-bounds format) and instantly generate accurate parcel geometries.
+A QGIS plugin for plotting land parcels from Philippine land titles using bearing-distance data. This tool helps non-surveyors and professionals plot lots using tie points, requiring no GIS background.
 
 ## Features
 
-- **Intelligent Bearing Parsing**: Automatically interprets common Philippine survey notations from TCTs and OCTs
-- **Coordinate System Support**: Works with both PRS92 and WGS84 coordinate systems
-- **Tie Point Selection**: Built-in database of common tie points for accurate parcel positioning
-- **Real-time Preview**: Visual feedback of parcel geometry as you input data
-- **OCR Support**: Optional OCR functionality for digitizing technical descriptions from scanned TCTs
-- **Input Validation**: Ensures accurate data entry with real-time validation
-- **WKT Generation**: Exports parcel geometry in Well-Known Text format
+- Plot land parcels from bearing-distance data
+- Built-in database of Philippine tie points
+- Real-time preview of parcel geometry
+- Optional OCR for digitizing technical descriptions
+- Support for PRS92 and WGS84 coordinate systems
 
 ## Installation
 
-1. Download the plugin from the QGIS Plugin Repository or clone this repository
-2. Extract the files to your QGIS plugins directory:
+1. Download from QGIS Plugin Repository or clone this repository
+2. Extract to your QGIS plugins directory:
    - Windows: `C:\Users\<username>\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\`
    - Linux: `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
    - macOS: `~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/`
-3. Enable the plugin in QGIS through Plugins > Manage and Install Plugins
+3. Enable in QGIS: Plugins > Manage and Install Plugins
 
-## Usage
+## Basic Usage
 
-1. **Start the Plugin**: Click the "Title Plotter" icon in the QGIS toolbar
-2. **Select Tie Point**: Use the tie point selector to choose a reference point
-3. **Enter Technical Description**: Input bearing and distance data
-4. **Preview**: View the parcel geometry in real-time
-5. **Plot**: Add the parcel to your QGIS map
+1. Click "Title Plotter" icon in QGIS toolbar
+2. Select a tie point from the database
+3. Enter bearing and distance data
+4. Preview and plot the parcel
 
-## Input Validation
+## OCR Support (Optional)
 
-- **Degrees**: Must be between 0 and 90
-- **Minutes**: Must be between 0 and 59
-- **Directions**: Automatically capitalized (N/S, E/W)
-- **Distance**: Must be a positive number
-
-## OCR Support
-
-The plugin includes optional OCR functionality for digitizing technical descriptions from scanned TCTs. To use this feature:
-
-1. Install Tesseract OCR on your system
-2. Install required Python packages:
+For OCR functionality:
+1. Install Tesseract OCR
+2. Install Python packages:
    ```bash
    pip install pytesseract Pillow opencv-python
    ```
-3. Enable OCR in the plugin settings
 
-## Development
+## Requirements
 
-### Requirements
-
-- QGIS 3.x
+- QGIS 3.22 or later
 - Python 3.x
-- Required Python packages:
-  - pandas
-  - shapely
-  - pytesseract (optional, for OCR)
-  - Pillow (optional, for OCR)
-  - opencv-python (optional, for OCR)
-
-### Building from Source
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/isaacenage/TitlePlotterPH.git
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Build resources:
-   ```bash
-   pyrcc5 resources.qrc -o resources.py
-   ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+- Required packages: pandas, shapely
+- Optional packages: pytesseract, Pillow, opencv-python (for OCR)
 
 ## License
 
-This project is licensed under the GNU General Public License v2.0 - see the [LICENSE](LICENSE) file for details.
+GPL-3.0 - See [LICENSE](LICENSE) file for details.
 
 ## Author
 
-- Isaac Enage (isaacenagework@gmail.com)
+Isaac Melchor Velasquez Enage (isaacenagework@gmail.com)
 
 ## Acknowledgments
 
